@@ -146,3 +146,6 @@ def sum_dig_pow(a, b):
             answer.append(num)
 
     return answer
+
+# print(sum_dig_pow(1, 10)) # should equal [1,2,3,4,5,6,7,8,9]
+# print(sum_dig_pow(1, 100)) # should equal [1,2,3,4,5,6,7,8,9, 89]
