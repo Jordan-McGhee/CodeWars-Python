@@ -94,3 +94,55 @@ def sum_of_minimums(numbers):
 
 # print(sum_of_minimums([ [ 7,9,8,6,2 ], [6,3,5,4,3], [5,8,7,4,5] ])) # should be 9
 # print(sum_of_minimums([ [11,12,14,54], [67,89,90,56], [7,9,4,3], [9,8,6,7]])) # should be 76
+
+"""
+
+Take a Number And Sum Its Digits Raised To The Consecutive Powers And ....¡Eureka!!
+The number 89 is the first integer with more than one digit that fulfills the property partially introduced in the title of this kata. What's the use of saying "Eureka"? Because this sum gives the same number.
+
+In effect: 89 = 8^1 + 9^2
+
+The next number in having this property is 135.
+
+See this property again: 135 = 1^1 + 3^2 + 5^3
+
+We need a function to collect these numbers, that may receive two integers a, b that defines the range [a, b] (inclusive) and outputs a list of the sorted numbers in the range that fulfills the property described above.
+
+Let's see some cases:
+
+sum_dig_pow(1, 10) == [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+sum_dig_pow(1, 100) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
+If there are no numbers of this kind in the range [a, b] the function should output an empty list.
+
+sum_dig_pow(90, 100) == []
+
+"""
+
+def sum_dig_pow(a, b):
+    
+    # empty list to append working numbers to
+    answer = []
+
+    # iterate over nums in range a to b+1 since we need to include b
+    for num in range(a,b+1):
+
+        # convert each num in our range to string in order to iterate over its individual numbers
+        string_num = str(num)
+        # total variable set equal to 0 for each iteration
+        total = 0
+
+        # iterate over each character in our number that we converted to a string. Use enumerate to get the index. We'll use the index + 1 to raise the current character to that power.
+        for i,char in enumerate(string_num):
+            # +1 because our index will start at 0
+            i += 1
+            
+            # add the integer value of our character raised to the i power
+            total += (int(char) ** i)
+
+        # check if our total variable is equal to the current number that we're on
+        if total == num:
+            # if so, our condition is met to add this num to our answer variable from before
+            answer.append(num)
+
+    return answer
